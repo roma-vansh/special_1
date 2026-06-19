@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Celebration</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        height:100vh;
+        overflow:hidden;
+        font-family:Arial, sans-serif;
+        background:linear-gradient(135deg,#ffe6f2,#fff8dc);
+        position:relative;
+    }
+
+    #studyBtn{
+        position:absolute;
+        top:60%;
+        left:50%;
+        transform:translateX(-50%);
+        padding:15px 30px;
+        font-size:22px;
+        border:none;
+        border-radius:12px;
+        background:#ff4da6;
+        color:white;
+        cursor:pointer;
+        transition:0.5s;
+    }
+
+    #studyBtn:hover{
+        transform:translateX(-50%) scale(1.08);
+    }
+
+    .hide{
+        opacity:0;
+        transform:translateX(-50%) scale(0.8);
+        pointer-events:none;
+    }
+
+    #message{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%) scale(0.8);
+        font-size:2rem;
+        color:#d63384;
+        opacity:0;
+        transition:all 1s ease;
+        text-align:center;
+        width:90%;
+    }
+
+    .flower{
+        position:absolute;
+        top:-50px;
+        font-size:35px;
+        animation:fall linear forwards;
+        pointer-events:none;
+    }
+
+    @keyframes fall{
+        from{
+            transform:translateY(-50px) rotate(0deg);
+        }
+        to{
+            transform:translateY(110vh) rotate(360deg);
+            opacity:0;
+        }
+    }
+
+    .confetti{
+        position:absolute;
+        width:10px;
+        height:10px;
+        top:-20px;
+        animation:confettiFall linear forwards;
+        pointer-events:none;
+    }
+
+    @keyframes confettiFall{
+        from{
+            transform:translateY(0) rotate(0deg);
+        }
+        to{
+            transform:translateY(110vh) rotate(720deg);
+            opacity:0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<button id="studyBtn" onclick="celebrate()">
+    Press Kro Chloooo 🫣
+</button>
+
+<h1 id="message">
+    Good Job Bacchaaa 😘 <br>
+    Phirsee Proud feel kraa diyee 😗🫂
+</h1>
+
+<script>
+
+function celebrate(){
+
+    const btn = document.getElementById("studyBtn");
+
+    btn.classList.add("hide");
+
+    setTimeout(()=>{
+        btn.style.display = "none";
+    },500);
+
+    const msg = document.getElementById("message");
+
+    msg.style.opacity = "1";
+    msg.style.transform = "translate(-50%, -50%) scale(1.1)";
+
+    setTimeout(()=>{
+        msg.style.transform = "translate(-50%, -50%) scale(1)";
+    },300);
+
+    const flowers = ["🌸","🌷","🌹","💐","🌼","🪻"];
+
+    for(let i=0;i<60;i++){
+
+        const flower = document.createElement("div");
+        flower.classList.add("flower");
+
+        flower.innerHTML =
+            flowers[Math.floor(Math.random()*flowers.length)];
+
+        flower.style.left = Math.random()*100 + "vw";
+
+        flower.style.animationDuration =
+            (Math.random()*3 + 2) + "s";
+
+        document.body.appendChild(flower);
+
+        setTimeout(()=>{
+            flower.remove();
+        },6000);
+    }
+
+    for(let i=0;i<120;i++){
+
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random()*100 + "vw";
+
+        confetti.style.backgroundColor =
+            `hsl(${Math.random()*360},100%,50%)`;
+
+        confetti.style.animationDuration =
+            (Math.random()*2 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+            confetti.remove();
+        },5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
